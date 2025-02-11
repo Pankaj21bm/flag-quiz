@@ -44,7 +44,10 @@ const Quiz = ({ selectedCountries }) => {
       return newScore;
     });
     setSelectedAnswer(answer);
-    setTimeout(generateNewQuestion, 800);
+    setTimeout(() => {
+      setSelectedAnswer(null);
+      generateNewQuestion();
+    }, 800);  
   };
 
   const resetGame = () => {
