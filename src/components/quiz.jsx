@@ -9,7 +9,7 @@ const Quiz = ({ selectedCountries }) => {
   const [options, setOptions] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [gameOver, setGameOver] = useState(false);
-  const [isQuestionReady, setIsQuestionReady] = useState(false); // Track loading state
+  const [isQuestionReady, setIsQuestionReady] = useState(true); // Track loading state
 
   useEffect(() => {
     generateNewQuestion();
@@ -30,7 +30,6 @@ const Quiz = ({ selectedCountries }) => {
 
     const allOptions = [...wrongCountries, correctCountry.name];
 
-    // Reset loading state and update question data
     setIsQuestionReady(false);
     setCurrentFlag(correctCountry.code.toLowerCase());
     setCurrentCorrectAnswer(correctCountry.name);
@@ -60,7 +59,7 @@ const Quiz = ({ selectedCountries }) => {
   };
 
   const handleImageLoad = () => {
-    setIsQuestionReady(true); // Display content when image loads
+    setIsQuestionReady(true); 
   };
 
   const resetGame = () => {
@@ -84,16 +83,16 @@ const Quiz = ({ selectedCountries }) => {
         </div>
       ) : (
         <>
+          <img
+            src={`/flags/${currentFlag}.svg`}
+            alt="Flag to guess"
+            className="flag-image"
+            onLoad={handleImageLoad}
+          />
           {!isQuestionReady ? (
             <div>Loading next question...</div>
           ) : (
             <>
-              <img
-                src={`/flags/${currentFlag}.svg`}
-                alt="Flag to guess"
-                className="flag-image"
-                onLoad={handleImageLoad}
-              />
               <div className="options-container">
                 {options.map((option, index) => (
                   <button
