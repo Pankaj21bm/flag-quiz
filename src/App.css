@@ -1,0 +1,75 @@
+.App {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.continent-buttons{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.continent-buttons button{
+  width: 300px;
+}
+
+.score {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.flag-image {
+  width: 300px;
+  height: 200px;
+  object-fit: contain;
+  margin: 2rem 0;
+  border: 1px solid #ccc;
+}
+
+.options-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.option-button {
+  padding: 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: 2px solid #333;
+  border-radius: 8px;
+  background-color: white;
+  transition: all 0.2s;
+  color: black;
+}
+
+.option-button:hover:not(:disabled) {
+  background-color: #f0f0f0;
+}
+
+.option-button:disabled {
+  cursor: not-allowed;
+}
+
+.option-button.correct {
+  background-color: #90EE90;
+  border-color: #006400;
+}
+
+.option-button.incorrect {
+  background-color: #FFB6C1;
+  border-color: #8B0000;
+}
+
+.reset-button {
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
