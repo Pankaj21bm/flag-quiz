@@ -1,6 +1,6 @@
 import { useState, useEffect, useLayoutEffect } from 'react';
 
-const MAX_GUESSES = 10;
+const MAX_GUESSES = 50;
 
 const Quiz = ({ selectedCountries }) => {
   const [score, setScore] = useState({ correct: 0, incorrect: 0, total: 0 });
