@@ -63,7 +63,7 @@ const Quiz = ({ selectedCountries }) => {
   return (
     <div className="quiz-container">
       <div className="score">
-        Correct: {score.correct} | Incorrect: {score.incorrect} | Total: {score.correct + score.incorrect}/{score.total}
+        Correct: {score.correct} | Incorrect: {score.incorrect} | Total: {score.total}/{MAX_GUESSES}
       </div>
 
       {gameOver ? (

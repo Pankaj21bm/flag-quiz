@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+.quiz-container{
+  img{
+    width: 100%;
+    height: auto;
+  }
+}
+
 .continent-buttons{
   display: flex;
   justify-content: center;
