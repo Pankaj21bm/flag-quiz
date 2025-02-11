@@ -24,7 +24,7 @@ const Quiz = ({ selectedCountries }) => {
     const wrongCountries = selectedCountries
       .filter(c => c.code !== correctCountry.code)
       .sort(() => 0.5 - Math.random())
-      .slice(0, 3)
+      .slice(0, 5)
       .map(c => c.name);
 
     const allOptions = [...wrongCountries, correctCountry.name];
