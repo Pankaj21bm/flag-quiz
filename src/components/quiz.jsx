@@ -9,7 +9,7 @@ const Quiz = ({ selectedCountries }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     generateNewQuestion();
   }, []);
 
