@@ -8,6 +8,8 @@ const Quiz = ({ selectedCountries }) => {
   const [options, setOptions] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [gameOver, setGameOver] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
 
   useEffect(() => {
     generateNewQuestion();
@@ -26,8 +28,8 @@ const Quiz = ({ selectedCountries }) => {
       .map(c => c.name);
 
     const allOptions = [...wrongCountries, correctCountry.name];
-    setOptions(allOptions.sort(() => 0.5 - Math.random()));
     setCurrentFlag(correctCountry);
+    setOptions(allOptions.sort(() => 0.5 - Math.random()));
     setSelectedAnswer(null);
   };
 
@@ -47,7 +49,7 @@ const Quiz = ({ selectedCountries }) => {
     setTimeout(() => {
       setSelectedAnswer(null);
       generateNewQuestion();
-    }, 800);  
+    }, 800);
   };
 
   const resetGame = () => {
@@ -72,25 +74,32 @@ const Quiz = ({ selectedCountries }) => {
       ) : (
         <>
           <img
-            src={`/flags/${(currentFlag.code.toLowerCase())}.svg`}
+            src={`/flags/${currentFlag.code.toLowerCase()}.svg`}
             alt="Flag to guess"
             className="flag-image"
+            onLoad={() => setImageLoaded(true)}
+            onError={() => setImageLoaded(false)}
+            style={{ display: imageLoaded ? 'block' : 'none' }}
           />
 
-          <div className="options-container">
-            {options.map((option, index) => (
-              <button
-                key={index}
-                onClick={() => handleAnswer(option)}
-                disabled={!!selectedAnswer}
-                className={`option-button ${selectedAnswer && option === currentFlag.name ? 'correct' : ''
-                  } ${selectedAnswer && option !== currentFlag.name ? 'incorrect' : ''
-                  }`}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
+          {!imageLoaded && <p>Loading Flag...</p>}
+
+          {imageLoaded && (
+            <div className="options-container">
+              {options.map((option, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleAnswer(option)}
+                  disabled={!!selectedAnswer}
+                  className={`option-button ${selectedAnswer && option === currentFlag.name ? 'correct' : ''
+                    } ${selectedAnswer && option !== currentFlag.name ? 'incorrect' : ''
+                    }`}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          )}
         </>
       )}
 
